@@ -26,6 +26,7 @@ async function setup() {
   console.log(`Ingress established at: ${listener.url()}`);
   url = listener.url();
   console.log(`Express listening on: ${socket.address()}`);
+  app.listen(3000);
 }
 
 setup();
