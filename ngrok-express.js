@@ -1,9 +1,10 @@
 const express = require("express");
 const ngrok = require("@ngrok/ngrok");
 const app = express();
+let url = "not set";
 
 app.get("/", (req, res) => {
-  res.send("Hello Ngrok!");
+  res.send(`Hello Ngrok! URL: ${url}`);
 });
 
 async function setup() {
@@ -23,7 +24,9 @@ async function setup() {
   // link listener to app
   const socket = await ngrok.listen(app, listener);
   console.log(`Ingress established at: ${listener.url()}`);
+  url = listener.url();
   console.log(`Express listening on: ${socket.address()}`);
+  app.listen(3000);
 }
 
 setup();
